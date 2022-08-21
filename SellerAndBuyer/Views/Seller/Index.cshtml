@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Seller>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Seller Index</h1>
+@foreach(var obj in Model)
+{
+    <h6>@obj.GetType</h6>
+}
