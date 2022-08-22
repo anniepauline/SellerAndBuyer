@@ -15,12 +15,19 @@ namespace SellerAndBuyer.Models
         public string Name { get; set; }
 
         [Required]
-        public string? Type { get; set; }
-
-        public int User_Id { get; set; }
+        public Item Type { get; set; }
 
         public DateTime TimeStamp { get; set; } = DateTime.Now;
         public AppUser AppUser { get; set; }
 
+    }
+
+    public enum Item
+    {
+        Fruits,
+        Vegeteables,
+        Carpets,
+        Mats,
+        Utensils
     }
 }

@@ -6,11 +6,10 @@ namespace SellerAndBuyer.Models
 {
     public class AppUser : IdentityUser
     {
-        [Required]
+       
         public string Role { get; set; }
 
-        [Required]
-        public int Phone { get; set; }
+      //removed phone no.
         public DateTime TimeStamp { get; set; } = DateTime.Now;
 
         //Seller Realationship

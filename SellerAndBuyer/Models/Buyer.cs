@@ -18,7 +18,6 @@ namespace SellerAndBuyer.Models
 
         public DateTime TimeStamp { get; set; } = DateTime.Now;
 
-        public int User_Id { get; set; }
         public AppUser AppUser { get; set; }
     }
 }
