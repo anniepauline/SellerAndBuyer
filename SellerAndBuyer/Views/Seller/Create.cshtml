@@ -1,0 +1,29 @@
+﻿@model Seller
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create </h1>
+
+<div class="col-md-4">
+    <form method="post">
+        <h2>Complete profile</h2>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-floating">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" autocomplete="username" aria-required="true" />           
+        </div>
+        <div class="form-floating">
+            <label asp-for="Location"></label>
+            <input asp-for="Location" class="form-control" autocomplete="username" aria-required="true" />
+        </div>
+        <div class="form-floating">
+            <label asp-for="Type"></label>
+            <input asp-for="Type" class="form-control" autocomplete="username" aria-required="true" />
+        </div>
+        <button type="submit" class="w-100 btn btn-lg btn-primary">Submit</button>
+   
+    </form>
+</div>

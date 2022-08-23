@@ -15,6 +15,16 @@ builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireCo
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
+//builder.Services.AddAuthorization(options => {
+//    options.AddPolicy("IsSeller",
+//    policy => policy.RequireClaim("Role", "seller"));
+//});
+
+//builder.Services.AddAuthorization(options => {
+//    options.AddPolicy("IsLogin",
+//    policy => policy.RequireClaim("Role", "seller"));
+//});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
