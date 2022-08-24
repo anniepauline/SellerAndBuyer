@@ -12,8 +12,8 @@ using SellerAndBuyer.Data;
 namespace SellerAndBuyer.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220821084017_AddUser-Buyer-SellerToDB")]
-    partial class AddUserBuyerSellerToDB
+    [Migration("20220824000102_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -247,6 +247,9 @@ namespace SellerAndBuyer.Migrations
                     b.Property<string>("AppUserId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int>("AppUser_Id")
+                        .HasColumnType("int");
+
                     b.Property<string>("Location")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -261,9 +264,6 @@ namespace SellerAndBuyer.Migrations
                     b.Property<string>("Type")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("User_Id")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -283,6 +283,9 @@ namespace SellerAndBuyer.Migrations
                     b.Property<string>("AppUserId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int>("AppUser_Id")
+                        .HasColumnType("int");
+
                     b.Property<string>("Location")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -297,9 +300,6 @@ namespace SellerAndBuyer.Migrations
                     b.Property<string>("Type")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("User_Id")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -362,7 +362,7 @@ namespace SellerAndBuyer.Migrations
             modelBuilder.Entity("SellerAndBuyer.Models.Buyer", b =>
                 {
                     b.HasOne("SellerAndBuyer.Models.AppUser", "AppUser")
-                        .WithMany("BuyerId")
+                        .WithMany("Buyers")
                         .HasForeignKey("AppUserId");
 
                     b.Navigation("AppUser");
@@ -371,7 +371,7 @@ namespace SellerAndBuyer.Migrations
             modelBuilder.Entity("SellerAndBuyer.Models.Seller", b =>
                 {
                     b.HasOne("SellerAndBuyer.Models.AppUser", "AppUser")
-                        .WithMany("SellerId")
+                        .WithMany("Sellers")
                         .HasForeignKey("AppUserId");
 
                     b.Navigation("AppUser");
@@ -379,9 +379,9 @@ namespace SellerAndBuyer.Migrations
 
             modelBuilder.Entity("SellerAndBuyer.Models.AppUser", b =>
                 {
-                    b.Navigation("BuyerId");
+                    b.Navigation("Buyers");
 
-                    b.Navigation("SellerId");
+                    b.Navigation("Sellers");
                 });
 #pragma warning restore 612, 618
         }

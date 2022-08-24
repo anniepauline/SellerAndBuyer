@@ -12,12 +12,13 @@ namespace SellerAndBuyer.Models
         [Required]
         public int Phone { get; set; }
         public DateTime TimeStamp { get; set; } = DateTime.Now;
+        //public string AppUserId1 { get; set; }
 
         //Seller Realationship
-        public List<Seller> SellerId { get; set; }
+        public List<Seller> Sellers { get; set; }
 
         //Buyer Realationship
-        public List<Buyer> BuyerId { get; set; }
+        public List<Buyer> Buyers { get; set; }
 
 
 
