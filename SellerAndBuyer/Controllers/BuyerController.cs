@@ -19,7 +19,7 @@ namespace SellerAndBuyer.Controllers
         {
 
            // var objBuyer = _db.Buyer.ToList();
-            IEnumerable<Buyer> objSellerList = _db.Buyer;
+            IEnumerable<Seller> objSellerList = _db.Seller;
             return View(objSellerList);
         }
 

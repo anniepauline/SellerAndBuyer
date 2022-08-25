@@ -1,13 +1,13 @@
-﻿@model IEnumerable<Buyer>
+﻿@model IEnumerable<Seller>
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Buyer Index</h1>
+<h1>Seller List</h1>
 @foreach(var obj in Model)
 {
     <h6>Name: @obj.Name</h6>
     <h6>Locaton: @obj.Location</h6>
     <h6>Type: @obj.Type</h6>
-   
-}
+    <a asp-controller="Seller" asp-action="Edit" asp-route-id="@obj.Id">[Edit]</a>
+   }
