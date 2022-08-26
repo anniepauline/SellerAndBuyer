@@ -12,8 +12,8 @@ using SellerAndBuyer.Data;
 namespace SellerAndBuyer.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220824000102_initial")]
-    partial class initial
+    [Migration("20220825022030_seller-buyer-db-1")]
+    partial class sellerbuyerdb1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

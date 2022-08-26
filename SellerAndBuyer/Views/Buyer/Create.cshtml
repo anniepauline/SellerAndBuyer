@@ -1,9 +1,14 @@
-﻿@model Seller
+﻿@model Buyer
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="~/css/site.css">
+
+</head>
 <h1>Create </h1>
 
 <div class="col-md-4">
@@ -14,16 +19,48 @@
         <div class="form-floating">
             <label asp-for="Name"></label>
             <input asp-for="Name" class="form-control" autocomplete="Name" aria-required="true" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+
         </div>
+          <div class="location form-floating">
+            <label asp-for="Location"></label>  
+            <span class="fa fa-2x fa-map-marker" id = "mapIcon"onclick="getPreciseLocation()"></span>
+            <input asp-for="Location" class="form-control" id ="buyerLocation" placeholder="Click on the icon" autocomplete="Location" aria-required="true" />
+             <span asp-validation-for="Location" class="text-danger"></span>
+          </div>
+
+    
+
         <div class="form-floating">
-            <label asp-for="Location"></label>
-            <input asp-for="Location" class="form-control" autocomplete="Location" aria-required="true" />
+           <select asp-for="Type" class="form-control">
+                  <option >Fruits</option>
+                  <option >Vegetables</option>>
+                  <option >Carpets</option>>
+                  <option >Flowers</option>>
+                  <option >Clothes</option>>
+             </select>
         </div>
-        <div class="form-floating">
-            <label asp-for="Type"></label>
-            <input asp-for="Type" class="form-control" autocomplete="Type" aria-required="true" />
-        </div>
+        
         <button type="submit" class="w-100 btn btn-lg btn-primary">Submit</button>
+
    
     </form>
 </div>
+
+
+<script> 
+  'use strict';
+function getPreciseLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(saveExactPosition)
+    } else {
+        alert("Geolocation is not supported");
+    }
+}
+function saveExactPosition(position) {
+    console.log(position.coords.longitude);
+    alert(+ position.coords.latitude + "  " + position.coords.longitude);    
+    document.getElementById("buyerLocation").value = position.coords.latitude + " " + position.coords.longitude;
+    
+}
+//     </script>  

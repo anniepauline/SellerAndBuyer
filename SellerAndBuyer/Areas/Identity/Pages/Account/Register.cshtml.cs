@@ -105,6 +105,7 @@ namespace SellerAndBuyer.Areas.Identity.Pages.Account
             public string ConfirmPassword { get; set; }
         }
 
+      
 
         public async Task OnGetAsync(string returnUrl = null)
         {
@@ -117,8 +118,7 @@ namespace SellerAndBuyer.Areas.Identity.Pages.Account
             returnUrl ??= Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
-            {
-                
+            {                
                 var user = CreateUser();
                 user.Role = Input.Role;
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);

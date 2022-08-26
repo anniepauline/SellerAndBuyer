@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SellerAndBuyer.Models
@@ -15,14 +16,14 @@ namespace SellerAndBuyer.Models
         public string Name { get; set; }
 
         [Required]
-        public string? Type { get; set; }
+        public string Type { get; set; }
 
 
         //public string AppUserId1 { get; set; }
 
         public DateTime TimeStamp { get; set; } = DateTime.Now;
 
-        public int AppUser_Id { get; set; }
+       
         public AppUser AppUser { get; set; }
 
 
@@ -30,4 +31,5 @@ namespace SellerAndBuyer.Models
         //public string AppUserRefId { get; set; }
         //public AppUser AppUserId { get; set; }
     }
+   
 }

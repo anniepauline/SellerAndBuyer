@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 
 namespace SellerAndBuyer.Models
@@ -19,9 +20,8 @@ namespace SellerAndBuyer.Models
 
         //Buyer Realationship
         public List<Buyer> Buyers { get; set; }
-
-
-
-
     }
+
+  
+
 }

@@ -16,3 +16,21 @@ html {
 body {
   margin-bottom: 60px;
 }
+/*Location input box style*/
+.location {
+    position: relative;
+    font-size: 16px;
+}
+
+    .location input {
+        width: 370px;
+        height: 32px;
+        border-radius: 5px;
+    }
+    
+
+    .location .fa-map-marker {
+        position: absolute;
+        top: 15px;
+        left: 340px;
+    }
