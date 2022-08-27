@@ -31,6 +31,7 @@ namespace SellerAndBuyer.Models
         //public string AppUserRefId { get; set; }
         //public AppUser AppUserId { get; set; }
 
+
     }
 
   

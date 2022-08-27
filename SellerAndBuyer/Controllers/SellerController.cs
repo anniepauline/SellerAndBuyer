@@ -5,6 +5,8 @@ using SellerAndBuyer.Models;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 using System.Drawing;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace SellerAndBuyer.Controllers
 {
@@ -56,7 +58,7 @@ namespace SellerAndBuyer.Controllers
         //GET
         public IActionResult Create()
         {
-            
+
             return View();
         }
 
@@ -66,15 +68,15 @@ namespace SellerAndBuyer.Controllers
         public IActionResult Create(Seller obj)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                 var CurrentUser = _db.Users
-                    .Where(users => users.Id == userId)
+            var CurrentUser = _db.Users
+                .Where(users => users.Id == userId)
                     .FirstOrDefault();
 
             obj.AppUser = CurrentUser;
+            
             _db.Seller.Add(obj);
-       
             _db.SaveChanges();
-         
+           
             return RedirectToAction("Index");
         }
 
