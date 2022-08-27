@@ -1,16 +1,22 @@
-﻿@model IEnumerable<Seller>
+﻿@model Seller
+
 @{
     ViewData["Title"] = "Index";
 }
 
 <h1>Seller Index</h1>
-@foreach(var obj in Model)
-{
-    <h6>@obj.Name</h6>
-    <h6>@obj.Location</h6>
-    <h6>@obj.Type</h6><br />
+
+
+
+@{
+    var db_sell = ViewData["sellDb"] as SellerAndBuyer.Models.Seller;
 }
+<div> Name: @db_sell.Name</div>
+<div> Location: @db_sell.Location</div>
+<div> Type: @db_sell.Type</div>
+
+
+<a asp-controller = "Seller" asp-action="Edit" asp-route-id = "@db_sell.Id">Edit</a>   
 
 
 
-<script></script>

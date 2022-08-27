@@ -18,9 +18,31 @@ namespace SellerAndBuyer.Controllers
         public IActionResult Index()
         {
 
-           // var objBuyer = _db.Buyer.ToList();
-            IEnumerable<Buyer> objSellerList = _db.Buyer;
-            return View(objSellerList);
+            // var objBuyer = _db.Buyer.ToList();
+            //IEnumerable<Buyer> objSellerList = _db.Buyer;
+            //return View(objSellerList);
+            IEnumerable<Buyer> objBuyerList = _db.Buyer;
+            //get current userId
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            //get userId from buyer table if they match the current userId
+            var CurrentUser = _db.Users
+                  .Where(users => users.Id == userId)
+                  .FirstOrDefault();
+           
+            // check if current user id == buyer user id(foreign key)
+            var matches = objBuyerList.Where(p => p.AppUser == CurrentUser);
+            if (matches != null)
+            {
+                var buyerId = matches.Select(p => p.Id).FirstOrDefault();
+                Buyer buyerDb = _db.Buyer.Find(buyerId);
+                ViewData["buyDb"] = buyerDb;
+                return View();
+            }
+            else
+            {
+                return View("Create");
+            }
+            return View("Index");
         }
 
         //GET

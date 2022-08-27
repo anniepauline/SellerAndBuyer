@@ -28,4 +28,10 @@
     <Folder Include="NewFolder\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="Views\Seller\Create.cshtml" />
+    <None Include="Views\Seller\Edit.cshtml" />
+    <None Include="Views\Seller\Index.cshtml" />
+  </ItemGroup>
+
 </Project>

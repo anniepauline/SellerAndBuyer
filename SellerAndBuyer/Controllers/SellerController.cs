@@ -34,8 +34,23 @@ namespace SellerAndBuyer.Controllers
             //var posts = _db.Buyer
             //                    .Where(p => p.Type == )
             //                    .Select(p => new { p.Type });
-
-            return View(objSellerList);
+               var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var CurrentUser = _db.Users
+                  .Where(users => users.Id == userId)
+                  .FirstOrDefault();
+            var matches = objSellerList.Where(p => p.AppUser == CurrentUser);
+            if (matches != null )
+            {
+                var sellerId = matches.Select(p => p.Id).FirstOrDefault();
+                Seller sellerDb = _db.Seller.Find(sellerId);
+                ViewData["SellDb"] = sellerDb;
+                return View();
+            }
+            else
+            {   
+                return View("Create");
+            }
+            return View("Index");
         }
 
         //GET
@@ -98,5 +113,12 @@ namespace SellerAndBuyer.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public IActionResult Map()
+        {
+            return View();
+        }
+
+
     }
 }
