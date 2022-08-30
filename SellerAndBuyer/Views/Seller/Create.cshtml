@@ -24,12 +24,12 @@
          <div class="location form-floating">
             <label asp-for="Location"></label>  
             <span class="fa fa-2x fa-map-marker" id = "mapIcon"onclick="getPreciseLocation()"></span>
-            <input asp-for="Location" class="form-control" id ="sellerLocation" placeholder="Click on the icon" autocomplete="Location" aria-required="true" />
+            <input asp-for="Location" class="form-control sellerLoc" id ="sellerLocation" placeholder="Click on the icon" autocomplete="Location" aria-required="true" />
              <span asp-validation-for="Location" class="text-danger"></span>
           </div>
 
         <div class="form-floating">
-          <select asp-for="Type" class="form-control">
+          <select asp-for="Type" class="form-control sellerType">
                   <option >Fruits</option>
                   <option >Vegetables</option>>
                   <option >Carpets</option>>

@@ -52,8 +52,6 @@ namespace SellerAndBuyer.Controllers
             return View();
         }
 
-
-
         //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -106,5 +104,6 @@ namespace SellerAndBuyer.Controllers
 
             return RedirectToAction("Index");
         }
+       
     }
 }
