@@ -1,36 +1,29 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
-}
-/*Location input box style*/
-.location {
-    position: relative;
-    font-size: 16px;
+    margin-bottom: 60px;
 }
 
-    .location input {
-        width: 370px;
-        height: 32px;
-        border-radius: 5px;
-    }
-    
+#map {
+    height: 400px;
+    /* The height is 400 pixels */
+    width: 100%;
+    /* The width is the width of the web page */
 
-    .location .fa-map-marker {
-        position: absolute;
-        top: 15px;
-        left: 340px;
-    }
+    border: 10px ;
+    border-style:groove;
+    border-color: #0F3460;
+}

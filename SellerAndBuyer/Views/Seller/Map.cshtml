@@ -1,96 +1,77 @@
-﻿@model List<Buyer>
-
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
 @{
-ViewBag.Title = "Map view";
+    ViewData["Title"] = "Map view Page";
 }
 <html>
   <head>
     <title>Add Map</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <link rel="stylesheet" type="text/css" href="~/css/site.css" />
-        <link rel="script" type="text/javascript" href="~/js/js.css" />
 
+    <link rel="stylesheet" type="text/css" href="~/css/site.css" />
   </head>
   <body>
- 
+    <h3>My Google Maps Demo</h3>
+    <!--The div element for the map -->
     <div id="map"></div>
-    
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALaJrPN6QMHNeLybORzfRQcHzGTWkWI_A&callback=initMap&v=weekly"
-      defer
-    ></script>
-  </body>
-</html>
+    <script>//version 5: display buyer markers that are only in sellers range
 
-
-
-<script>
-
-    function initMap() {
+// The following example creates five accessible and
+// focusable markers.
+function initMap() {
     const map = new google.maps.Map(document.getElementById("map"), {
         zoom: 12,
-        center: { lat: 34.84555, lng: -111.8035 },
-        mapTypeId: 'roapmap'
+        center: { lat: -25.344, lng: 131.031 },
+        
+        mapTypeControlOptions: {
+      style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+      mapTypeIds: ["roadmap", "terrain"],
+    },
     });
-
     var myArray = [];
-    var buyerDetails = [];
-     @foreach(var d in Model)
-    {
-        string location = @d.Location.ToString();
-        string[] locationResult = location.Split(' ');
-        string Name = @d.Name;
-        if(locationResult.Length > 1)
+    const buyerDetails = [];
+    @foreach(var d in Model)
         {
-            var locationObj =  float.Parse(locationResult[0]) + " " + float.Parse(locationResult[1]);
-            @:myArray.push("@locationObj"+" "+ "@d.Name");                       
+             string location = @d.Location.ToString();
+             string[] locationResult = location.Split(' ');
+             string Name = @d.Name;
+             if(locationResult.Length > 1)
+             {
+                  var locationObj =  float.Parse(locationResult[0]) + " " + float.Parse(locationResult[1]);
+                  @:myArray.push("@locationObj" + " " + "@d.Name");
+             }
         }
-    }
-    
-   
-    //console.log(myArray);
-
-    //var cityCircle;
+//alert(myArray);
     var key = ['lat', 'lng'];
     var buyerName;
     var mapsBuyerMarker = [];
-
-      myArray.forEach(function (element) {
-      var buyerdetails = element.trim().split(/\s+/);
-      buyerdetails[0] = parseFloat(buyerdetails[0])
-      buyerdetails[1] = parseFloat(buyerdetails[1])
-      buyerName = buyerdetails[2] 
-      buyerdetails.splice(-1);
-      var buyerlocationObj = Object.assign({}, ...key.map((e, i) => ({ [e]: buyerdetails[i] })))
-      //alert(buyerdetails[0]);
-      //alert(buyerdetails[1]);
-      //alert(buyerName);
-      var buyerTemp = [];
-      buyerTemp.push(buyerlocationObj, buyerName);
-      mapsBuyerMarker.push(buyerTemp);
+        myArray.forEach(function(element) {
+        var buyerdetails = element.trim().split(/\s+/);
+        buyerdetails[0] = parseFloat(buyerdetails[0])
+        buyerdetails[1] = parseFloat(buyerdetails[1])
+        buyerName = buyerdetails[2]
+        buyerdetails.splice(-1);
+        var buyerlocationObj = Object.assign({}, ...key.map((e, i) => ({ [e]: buyerdetails[i] })))
+        var buyerTemp = [];
+        buyerTemp.push(buyerlocationObj, buyerName);
+        mapsBuyerMarker.push(buyerTemp);
     });
-    //.log(mapsBuyerMarker);
-
-
     var sellerLocation = '@ViewBag.location';
     var sellerName = '@ViewBag.Name';
     var sellerlocationObj;
     var mapsSellerMarker = [];
-     var   cityCircle;
-
+    var cityCircle;
     var sellerLocation = sellerLocation.trim().split(/\s+/);
     sellerLocation[0] = parseFloat(sellerLocation[0])
     sellerLocation[1] = parseFloat(sellerLocation[1])
     sellerlocationObj = Object.assign({}, ...key.map((e, i) => ({ [e]: sellerLocation[i] })))
     var sellerTemp = [];
-    sellerTemp.push(sellerlocationObj,sellerName);
+    sellerTemp.push(sellerlocationObj, sellerName);
     mapsSellerMarker.push(sellerTemp);
-    //console.log(mapsSellerMarker);
-   // alert(mapsSellerMarker);
 
-    // Create an info window to share between markers.
     const infoWindow = new google.maps.InfoWindow();
-     mapsSellerMarker.forEach(([position]) => {
+    mapsSellerMarker.forEach(([position]) => {
         cityCircle = new google.maps.Circle({
             strokeColor: "#FF0000",
             strokeOpacity: 0.8,
@@ -100,14 +81,14 @@ ViewBag.Title = "Map view";
             center: position,
             radius: Math.sqrt(50) * 100,
         })
-    }); 
-   
-    // function to check if buyer is in seller range
+        map.fitBounds(cityCircle.getBounds())
+
+    });
+
     function isMarkerInArea(circle, marker) {
         return (circle.getBounds().contains(marker))
     };
 
-    // display buyer marker that are only in  seller radius.
     mapsBuyerMarker.forEach(([position, title], i) => {
         if (isMarkerInArea(cityCircle, position)) {
             const marker = new google.maps.Marker({
@@ -117,20 +98,25 @@ ViewBag.Title = "Map view";
                 label: `${i + 1}`,
                 optimized: true,
             });
-            // Add a click listener for each marker, and set up the info window.
-            marker.addListener("click", () => {
+              marker.addListener("click", () => {
                 infoWindow.close();
                 infoWindow.setContent(marker.getTitle());
                 infoWindow.open(marker.getMap(), marker);
                 map.setZoom(18);
                 map.setCenter(data.location);
             });
-        }
 
+        }
     });
-  
+
+
 }
 
 window.initMap = initMap;
-
 </script>
+   <script 
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALaJrPN6QMHNeLybORzfRQcHzGTWkWI_A&callback=initMap&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>
