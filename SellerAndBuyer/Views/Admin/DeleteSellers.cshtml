@@ -1,0 +1,43 @@
+﻿@model Seller
+@{
+    ViewData["Title"] = "Delete Buyers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<partial name = "_Notification"/>
+
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="~/css/site.css">
+</head>
+
+<form method="post" asp-action = "DeleteSellers">
+    <input asp-for = "Id" hidden/>
+    <div class=" border p-3 mt-4">
+        <h2 class = text-primary>Delete Sellers</h2>
+        <hr/>
+    </div>
+
+    <div class="mb-3">
+            <label asp-for="Name"></label>
+            <input  asp-for="Name" disabled class="form-control" />
+        </div>
+      <div  class="mb-3">
+            <label asp-for="Location"></label>  
+            <input asp-for="Location"disabled class="form-control" id ="selelerLocation"  aria-required="true" />
+          </div>
+    <div  class="mb-3">
+          <select asp-for="Type" class="form-control sellerType">
+                  <option >Fruits</option>
+                  <option >Vegetables</option>>
+                  <option >Carpets</option>>
+                  <option >Flowers</option>>
+                  <option >Clothes</option>>
+             </select>
+        </div>
+
+       <button type="submit" class="w-100 btn  btn-danger">Delete</button>
+           <a asp-controller="Admin" asp-action="Seller" class = "btn btn-secondary" style="width:150px">
+                Back to list
+           </a>
+</form>
+

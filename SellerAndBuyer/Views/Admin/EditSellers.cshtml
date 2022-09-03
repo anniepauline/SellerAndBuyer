@@ -1,38 +1,34 @@
-﻿@model Buyer
+﻿@model Seller
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit Buyers";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<partial name = "_Notification"/>
 
 <head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="~/css/site.css">
-
 </head>
-<h1>Create </h1>
 
-<div class="col-md-4">
-    <form method="post">
-        <h2>Complete profile</h2>
-        <hr />
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="form-floating">
+<form method="post">
+    <div class=" border p-3 mt-4">
+        <h2 class = text-primary>Edit Sellers</h2>
+        <hr/>
+    </div>
+
+    <div class="mb-3">
             <label asp-for="Name"></label>
-            <input asp-for="Name" class="form-control" autocomplete="Name" aria-required="true" />
+            <input  asp-for="Name" class="form-control" />
             <span asp-validation-for="Name" class="text-danger"></span>
-
         </div>
-          <div class="location form-floating">
+      <div  class="mb-3">
             <label asp-for="Location"></label>  
             <span class="fa fa-2x fa-map-marker" id = "mapIcon"onclick="getPreciseLocation()"></span>
-            <input asp-for="Location" class="form-control" id ="buyerLocation" placeholder="Click on the icon" autocomplete="Location" aria-required="true" />
+            <input asp-for="Location" class="form-control" id ="buyerLocation" placeholder="Click on the icon"  aria-required="true" />
              <span asp-validation-for="Location" class="text-danger"></span>
           </div>
-
-    
-
-        <div class="form-floating">
-           <select asp-for="Type" class="form-control">
+    <div  class="mb-3">
+          <select asp-for="Type" class="form-control sellerType">
                   <option >Fruits</option>
                   <option >Vegetables</option>>
                   <option >Carpets</option>>
@@ -40,13 +36,12 @@
                   <option >Clothes</option>>
              </select>
         </div>
-        
-        <button type="submit" class="w-100 btn btn-lg btn-primary">Submit</button>
-      
-   
-    </form>
-</div>
 
+       <button type="submit" class="w-100 btn btn-lg btn-primary">Update</button>
+           <a asp-controller="Admin" asp-action="Seller" class = "btn btn-secondary" style="width:150px">
+                Back to list
+           </a>
+</form>
 
 <script> 
   'use strict';
@@ -63,4 +58,4 @@ function saveExactPosition(position) {
     document.getElementById("buyerLocation").value = position.coords.latitude + " " + position.coords.longitude;
     
 }
-//     </script>  
+</script>

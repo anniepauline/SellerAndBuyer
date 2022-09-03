@@ -31,7 +31,7 @@ namespace SellerAndBuyer.Controllers
            
             // check if current user id == buyer user id(foreign key)
             var matches = objBuyerList.Where(p => p.AppUser == CurrentUser);
-            if (matches != null)
+            if (matches.ToList().Count() >= 1)
             {
                 var buyerId = matches.Select(p => p.Id).FirstOrDefault();
                 Buyer buyerDb = _db.Buyer.Find(buyerId);
@@ -40,12 +40,13 @@ namespace SellerAndBuyer.Controllers
             }
             else
             {
-                return View("Create");
+                return RedirectToAction("Create");
             }
-            return View("Index");
+            
         }
 
         //GET
+
         public IActionResult Create()
         {
 
@@ -54,7 +55,8 @@ namespace SellerAndBuyer.Controllers
 
         //POST
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [Authorize]
+
         public IActionResult Create(Buyer obj)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -72,6 +74,8 @@ namespace SellerAndBuyer.Controllers
 
 
         //EDIT GET
+        [Authorize]
+
         public IActionResult Edit(int? id)
         {
             if (id == null || id == 0)
@@ -90,6 +94,7 @@ namespace SellerAndBuyer.Controllers
         //EDIT POST
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public IActionResult Edit(Buyer obj)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);

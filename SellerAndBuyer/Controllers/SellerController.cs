@@ -19,46 +19,34 @@ namespace SellerAndBuyer.Controllers
         {
             _db = db;
         }
-        [Authorize]
+        
+
+            [Authorize]
         public IActionResult Index()
         {
             IEnumerable<Seller> objSellerList = _db.Seller;
-            //var BuyerType = _db.Buyer.Select(s => new Buyer { Type = s.Type });
-            //BuyerType.ToString();
-            //var obj = _db.Seller.Where(Seller => Seller.Type == BuyerType).FirstOrDefault();
-
-
-            //            foreach(var obj1 in obj)
-            //{
-            //               var Name = obj1.AppUser.UserName;
-
-            //}
-            //var posts = _db.Buyer
-            //                    .Where(p => p.Type == )
-            //                    .Select(p => new { p.Type });
+       
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var CurrentUser = _db.Users
                   .Where(users => users.Id == userId)
                   .FirstOrDefault();
             var matches = objSellerList.Where(p => p.AppUser == CurrentUser);
-            if (matches != null)
+            if (matches.ToList().Count() >= 1)
             {
                 var sellerId = matches.Select(p => p.Id).FirstOrDefault();
                 Seller sellerDb = _db.Seller.Find(sellerId);
                 ViewData["SellDb"] = sellerDb;
-                return View();
+                return View(sellerDb);
             }
             else
             {
-                return View("Create");
+                return RedirectToAction("Create");
             }
-            return View("Index");
         }
 
         //GET
         public IActionResult Create()
         {
-
             return View();
         }
 
@@ -76,7 +64,6 @@ namespace SellerAndBuyer.Controllers
 
             _db.Seller.Add(obj);
             _db.SaveChanges();
-
             return RedirectToAction("Index");
         }
 
