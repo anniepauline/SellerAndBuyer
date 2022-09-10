@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SellerAndBuyer.Data;
 using SellerAndBuyer.Models;
 namespace SellerAndBuyer.Controllers
@@ -11,11 +12,8 @@ namespace SellerAndBuyer.Controllers
         {
             _db = db;
         }
-        public IActionResult Login()
-        {
-            
-            return View();
-        }
+        [Authorize(Roles = "Admin")]
+
         public IActionResult Buyer()
         {
             IEnumerable<Buyer> objBuyerList = _db.Buyer;

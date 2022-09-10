@@ -3,7 +3,22 @@
     ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<style>
+    .input-group
+ {
+      position:relative;
+  display:inline-block;
+ }
+ .icon
+ {
+      position: absolute;
+  right:7px;
+  top: 31px;
+}
+.input-field {
+  padding-right: 20px; /* = icon width if you don't want the password to go under the icon */ 
+  }
+</style>
 <h1>Edit </h1>
 
 <div class="col-md-4">
@@ -11,16 +26,21 @@
         <h2>Update profile</h2>
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="form-floating">
+        <div class="mb-3">
             <label asp-for="Name"></label>
-            <input asp-for="Name" class="form-control" autocomplete="Name" aria-required="true" />
+            <input asp-for="Name" class="form-control"  />
         </div>
-        <div class="form-floating">
-            <label asp-for="Location"></label>
-            <input asp-for="Location" class="form-control " autocomplete="Location" aria-required="true" />
-        </div>
-      <div class="form-floating">
+         <div class=" mb-3 input-group">
+            <label asp-for="Location"></label>  
+            <div id = "Location-div">
+                 <i class="bi bi-geo-alt-fill icon" onclick="getPreciseLocation()"></i>
+            <input asp-for="Location" class="form-control input-field" id=" sellerLocation"  placeholder="Click on the icon" />           
+            </div>
+             <span asp-validation-for="Location" class="text-danger"></span>
+          </div>
+      <div class="mb-3">
           <select asp-for="Type" class="form-control sellerType">
+              <option disabled selected>--Select Type---</option>
                   <option >Fruits</option>
                   <option >Vegetables</option>>
                   <option >Carpets</option>>
@@ -28,7 +48,23 @@
                   <option >Clothes</option>>
              </select>
         </div>
-        <button type="submit" class="w-100 btn btn-lg btn-primary">Update</button>
+        <button type="submit" class="w-50 btn btn-lg btn-primary">Update</button>
    
     </form>
 </div>
+
+<script> 
+'use strict';
+function getPreciseLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(saveExactPosition)
+    } else {
+        alert("Geolocation is not supported");
+    }
+}
+function saveExactPosition(position) {
+    console.log(position.coords.longitude);
+    document.getElementById("sellerLocation").value = position.coords.latitude + " " + position.coords.longitude;
+    
+}
+</script>  

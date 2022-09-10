@@ -5,14 +5,17 @@
 @{
     ViewData["Title"] = "Seller Info";
 }
-<div class="container p-3">
-<div class=" = "row pt-4">
-<div class="col-2">
-    <h2 class=" = "text-primary>Seller's List</h2>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="~/css/site.css">
+</head>
+<div class=" border p-3 mt-4">
+<div class="row pb-2">
+    <h2 class="text-primary">Seller's List</h2>
+    <hr/>
 </div>
 
-</div> 
-<br/><br/>
+<br/>
 <table class =" table-bordered table-striped" style = "width:100%">
 <thead>
     <tr>
@@ -57,11 +60,10 @@
             <td>
             <div class ="w-75 btn-group role="group">
                 <a asp-controller="Admin" asp-action="EditSellers" asp-route-id="@obj.Id"
-                class = "btn btn-primary mx-2"><i class="bi bi-pencil-square"></i>Edit</a>
+                class = "btn btn-primary mx-2"><i class="bi bi-pencil-square"></i> &nbsp;Edit</a>
                 
                  <a asp-controller="Admin" asp-action="DeleteSellers" asp-route-id="@obj.Id"
-                 class = "btn btn-denger mx-2"><i class="bi bi-trash3-fill"></i>Delete</a>
-
+                 class = "btn btn-denger mx-2"><i class="bi bi-trash"></i> &nbsp;Delete</a>
             </div>
             </td>
         </tr>

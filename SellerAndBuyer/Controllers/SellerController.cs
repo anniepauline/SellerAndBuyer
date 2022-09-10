@@ -19,9 +19,9 @@ namespace SellerAndBuyer.Controllers
         {
             _db = db;
         }
-        
 
-            [Authorize]
+
+        [Authorize(Roles = "Seller")]
         public IActionResult Index()
         {
             IEnumerable<Seller> objSellerList = _db.Seller;
@@ -45,6 +45,7 @@ namespace SellerAndBuyer.Controllers
         }
 
         //GET
+
         public IActionResult Create()
         {
             return View();

@@ -1,5 +1,8 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
+using SellerAndBuyer.Auth;
 using SellerAndBuyer.Data;
 using SellerAndBuyer.Models;
 
@@ -9,21 +12,31 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
+builder.Services.AddRazorPages();
+
+//builder.Services.AddRazorPages().addRazorRuntimeCompilation();
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
-builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = false)
+builder.Services.AddIdentity<AppUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddDefaultUI()
+    .AddDefaultTokenProviders()
+    //(options => options.SignIn.RequireConfirmedAccount = false)
+    // .AddRoles<AppUser>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = $"/Identity/Account/Login";
+    options.LogoutPath = $"/Identity/Account/Logout";
+    options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+});
+//.AddRoles<AppUser>();
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddSingleton<IEmailSender, EmailSender>();
 //builder.Services.AddAuthorization(options => {
 //    options.AddPolicy("IsSeller",
 //    policy => policy.RequireClaim("Role", "seller"));
 //});
 
-//builder.Services.AddAuthorization(options => {
-//    options.AddPolicy("IsLogin",
-//    policy => policy.RequireClaim("Role", "seller"));
-//});
+
 
 var app = builder.Build();
 

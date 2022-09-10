@@ -12,7 +12,8 @@
 
 <form method="post" asp-action = "DeleteBuyers">
     <input asp-for = "Id" hidden/>
-    <div class=" border p-3 mt-4">
+    <div class=" border p-3 mt-4">       
+        <div class = "row pb-2">
         <h2 class = text-primary>Delete Buyers</h2>
         <hr/>
     </div>
@@ -35,9 +36,9 @@
              </select>
         </div>
 
-       <button type="submit" class="w-100 btn  btn-danger">Delete</button>
-           <a asp-controller="Admin" asp-action="Buyer" class = "btn btn-secondary" style="width:150px">
+       <button type="submit" class=" btn  btn-danger btn-primary" style="width:150px" >Delete</button>
+           <a asp-controller="Admin" asp-action="Buyer" class = "btn btn-primary" style="width:150px">
                 Back to list
            </a>
+           </div>
 </form>
-

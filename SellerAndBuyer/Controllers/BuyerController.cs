@@ -4,6 +4,7 @@ using SellerAndBuyer.Data;
 using SellerAndBuyer.Models;
 using System.Security.Claims;
 
+
 namespace SellerAndBuyer.Controllers
 {
     public class BuyerController : Controller
@@ -14,7 +15,7 @@ namespace SellerAndBuyer.Controllers
         {
             _db = db;
         }
-        [Authorize]
+        [Authorize(Roles = "Buyer")]
         public IActionResult Index()
         {
 

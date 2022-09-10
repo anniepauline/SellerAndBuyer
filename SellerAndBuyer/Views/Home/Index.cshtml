@@ -2,7 +2,65 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+
+  </head>
+  <body>
+    <h1>Welcome, world!</h1>
+
+    <div class="container">
+        <div class="row g-3">
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card">
+                    <img src="~/images/vendor-sell.png" class="card-img-top" alt="A Street in Europe">
+                    <div class="card-body">
+                        <h5 class="card-title">Street Seller</h5>
+                        <p class="card-text">
+                            <li>Enter the location and items you wish to sell</li>
+                            <li> The app searches for buysers in the vendor zone and shows up on a map which makes it easier for the vendor to find customers. </li> 
+                           </p>
+                            <a class="btn btn-primary" asp-area="Identity" asp-page="/Account/Register">Admin handler</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card">
+                    <img src="~/images/buyer.png" class="card-img-top" alt="London">
+                    <div class="card-body">
+                        <h5 class="card-title">Buyers in need</h5>
+                        <p class="card-text">
+                               <li> Enter your location</li>
+                               <li>Enter the items you wish to buy</li></p>
+                        <a class="btn btn-primary" asp-area="Identity" asp-page="/Account/Register">Become a Buyer </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card">
+                    <img src="~/images/Admin.jpg" class="card-img-top" alt="New York">
+                    <div class="card-body">
+                        <h5 class="card-title">Admin</h5>
+                        <p class="card-text">
+                            <li>Access and manipulate details of buyers and selles</li>
+                        </p>
+                        <a class="btn btn-primary" asp-area="Identity" asp-page="/Account/Register">Admin handler</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+  
+    
+  </body>
+</html>

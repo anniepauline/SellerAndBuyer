@@ -8,27 +8,50 @@
 <head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="~/css/site.css">
+<style>
+    .input-group
+ {
+      position:relative;
+  display:inline-block;
+ }
+ .icon
+ {
+      position: absolute;
+  right:7px;
+  top: 31px;
+}
+.input-field {
+  padding-right: 20px; /* = icon width if you don't want the password to go under the icon */ 
+  }
+</style>
 </head>
 
 <form method="post">
     <div class=" border p-3 mt-4">
+        <div class = "row pb-2">
         <h2 class = text-primary>Edit Buyers</h2>
         <hr/>
-    </div>
+        </div>
 
     <div class="mb-3">
             <label asp-for="Name"></label>
             <input  asp-for="Name" class="form-control" />
             <span asp-validation-for="Name" class="text-danger"></span>
         </div>
-      <div  class="mb-3">
+ 
+
+             <div class=" mb-3 input-group">
             <label asp-for="Location"></label>  
-            <span class="fa fa-2x fa-map-marker" id = "mapIcon"onclick="getPreciseLocation()"></span>
-            <input asp-for="Location" class="form-control" id ="buyerLocation" placeholder="Click on the icon"  aria-required="true" />
+            <div id = "Location-div">
+                 <i class="bi bi-geo-alt-fill icon" onclick="getPreciseLocation()"></i>
+            <input asp-for="Location" class="form-control input-field" id = "buyerLocation" placeholder="Click on the icon" />           
+            </div>
              <span asp-validation-for="Location" class="text-danger"></span>
           </div>
+    
     <div  class="mb-3">
           <select asp-for="Type" class="form-control sellerType">
+            <option disabled selected>--Select Type---</option>
                   <option >Fruits</option>
                   <option >Vegetables</option>>
                   <option >Carpets</option>>
@@ -37,11 +60,13 @@
              </select>
         </div>
 
-       <button type="submit" class="w-100 btn btn-lg btn-primary">Update</button>
-           <a asp-controller="Admin" asp-action="Buyer" class = "btn btn-secondary" style="width:150px">
+       <button type="submit" class="btn btn-primary " style="width:150px">Update</button>
+           <a asp-controller="Admin" asp-action="Buyer" class = "btn btn-primary" style="width:150px">
                 Back to list
-           </a>
+        </a>
+        </div>   
 </form>
+
 
 <script> 
   'use strict';
@@ -54,7 +79,6 @@ function getPreciseLocation() {
 }
 function saveExactPosition(position) {
     console.log(position.coords.longitude);
-    alert(+ position.coords.latitude + "  " + position.coords.longitude);    
     document.getElementById("buyerLocation").value = position.coords.latitude + " " + position.coords.longitude;
     
 }

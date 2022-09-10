@@ -2,22 +2,24 @@
 @{
     ViewData["Title"] = "Index";
 }
-
-
-<h1>Buyer Index</h1>
-
-
-
 @{
     var db_buy = ViewData["buyDb"] as SellerAndBuyer.Models.Buyer;
 }
-<div> Name: @db_buy.Name</div>
-<div> Location: @db_buy.Location</div>
-<div> Type: @db_buy.Type</div>
 
 
-<a asp-controller = "Buyer" asp-action="Edit" asp-route-id = "@db_buy.Id">Edit</a> 
 
-<script>
-    console.log(sellerLocation);
-    </script>
+
+<h1>My Data</h1>
+
+<div class="card" style="width: 18rem;">
+  <img src="~/images/userInfo.png" class="card-img-top" alt="user_info">
+  <div class="card-body">
+    <h5 class="card-title">My info</h5>
+    <p class="card-text"><div> Name: @db_buy.Name</div>
+        <div> Location: @db_buy.Location</div>
+        <div> Type: @db_buy.Type</div></p>
+    <a  asp-controller = "Buyer" asp-action="Edit" asp-route-id = "@db_buy.Id">Edit</a>
+  </div>
+</div>
+
+
