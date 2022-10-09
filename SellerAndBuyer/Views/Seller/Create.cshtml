@@ -25,7 +25,7 @@
 </head>
 <h1>Create </h1>
 
-<div class="col-md-4">
+<div class="col-md-4 offset-3">
     <form method="post">
         <h2>Complete profile</h2>
         <hr />
@@ -35,35 +35,32 @@
             <input asp-for="Name" class="form-control" autocomplete="Name" aria-required="true" />
              <span asp-validation-for="Name" class="text-danger"></span>
 
-        <div class=" mb-3 input-group">
+       <div class="location mb-3 input-group">
             <label asp-for="Location"></label>  
             <div id = "Location-div">
                  <i class="bi bi-geo-alt-fill icon" onclick="getPreciseLocation()"></i>
-            <input asp-for="Location" class="form-control input-field" id=" sellerLocation"  placeholder="Click on the icon" />           
+            <input asp-for="Location" class="form-control input-field "id="sellerLocation"  placeholder="Click on the icon" />           
             </div>
              <span asp-validation-for="Location" class="text-danger"></span>
-          </div>
+          </div>   
 
         <div class="mb-3">
-          <select asp-for="Type" class="form-control sellerType">
-              <option disabled selected>--Select Type---</option>
+           <select asp-for="Type" class="form-control">
+                  <option disabled selected>--Select Type---</option>
                   <option >Fruits</option>
                   <option >Vegetables</option>>
                   <option >Carpets</option>>
                   <option >Flowers</option>>
                   <option >Clothes</option>>
              </select>
-        </div>
-        <button type="submit" class="w-50 btn btn-lg btn-primary">Submit</button>
-
-   
+        </div>       
+        <button type="submit" class="w-100 btn btn-lg btn-primary">Submit</button>  
     </form>
 </div>
 
 
-
 <script> 
-'use strict';
+  'use strict';
 function getPreciseLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(saveExactPosition)
@@ -77,4 +74,4 @@ function saveExactPosition(position) {
     document.getElementById("sellerLocation").value = position.coords.latitude + " " + position.coords.longitude;
     
 }
-</script>  
+</script>
