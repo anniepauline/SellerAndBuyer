@@ -2,7 +2,7 @@
 
 Street vendors have become an integral part of urban economies all over the globe. A street vendor is broadly defined as a person who offers access to a wide range of goods and services with low price. A street vendor's workplace is ideally a highly trafficked area located in an area with plenty of businesses and people. The weather is an element that all vendors must deal with. Days with perfect weather will yield higher profits, but vendors will also have to contend with days of pouring rain, high winds, and biting cold in which they will be lucky to break even for the day. It can be a long day that slowly drags by when no one is coming to a vendor’s cart, or it can be just the opposite with number of people waiting to buy the items being sold. If the vendor knew the number of customer and their whereabouts and requirements, the vendor’s life would be much easier thought of. The main users in the system include:
 
-Admin
-Sellers
-Buyers
+-Admin
+-Sellers
+-Buyers
 The goal is to make life easier for the seller by avoiding unnecessary travel to areas where there are no buyers. Instead the sellers can look for a buyer zone on the map and travel upto the buyers location. A buyer zone is a hotspot of buyers who are in need of the seller's products. Buyers can fill in their details like name, location and their requirements. The seller who wishes to sell his products enters his product and location. The application retrieves the seller’s and the buyer’s location from the database and checks if the buyers are within the range of the seller's radius and if the buyer's require the item that the seller sells. When the conditions are satisfied, the seller will be able to see the list of buyers on the map. Thus, the seller can deliver the necessary items to the buyers efficiently and hassle-free.
