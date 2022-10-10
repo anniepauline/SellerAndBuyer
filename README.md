@@ -1,4 +1,4 @@
-# SellerAndBuyer
+# Street Vendror Web App
 
 #### An interactive web portal for automating street vending for sellers.
 
